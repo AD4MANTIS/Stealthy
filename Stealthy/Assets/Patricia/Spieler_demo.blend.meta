@@ -7,20 +7,39 @@ ModelImporter:
     100002: Cube.001
     100004: Cube.002
     100006: //RootNode
+    100008: Cube.003
+    100010: Cube.004
+    100012: Cube.005
     400000: Cube
     400002: Cube.001
     400004: Cube.002
     400006: //RootNode
+    400008: Cube.003
+    400010: Cube.004
+    400012: Cube.005
     2100000: Material
+    2100002: Material.001
+    2100004: Material.002
+    2100006: Material.003
+    2100008: Material.004
     2300000: Cube
     2300002: Cube.001
     2300004: Cube.002
+    2300006: Cube.003
+    2300008: Cube.004
+    2300010: Cube.005
     3300000: Cube
     3300002: Cube.001
     3300004: Cube.002
+    3300006: Cube.003
+    3300008: Cube.004
+    3300010: Cube.005
     4300000: Cube
     4300002: Cube.001
     4300004: Cube.002
+    4300006: Cube.003
+    4300008: Cube.004
+    4300010: Cube.005
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
