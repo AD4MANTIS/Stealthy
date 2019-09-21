@@ -2,9 +2,11 @@
 
 public class Movement : MonoBehaviour
 {
+    public float speed;
+    public Camera camera;
+
     const float stepSize = 1f;
     const float interactRange = 3f;
-    public float speed;
 
     void Update()
     {
@@ -55,6 +57,8 @@ public class Movement : MonoBehaviour
 
     private void Move(Vector3 vector)
     {
-        transform.position += speed * vector;
+        Vector3 move = speed * vector;
+        transform.position += move;
+        camera.transform.position += move;
     }
 }
