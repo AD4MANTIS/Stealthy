@@ -15,6 +15,8 @@ ModelImporter:
     100018: //RootNode
     100020: SurfPatch
     100022: Torus
+    100024: Sphere.003
+    100026: Sphere.010
     400000: Sphere
     400002: Sphere.001
     400004: Sphere.002
@@ -27,8 +29,11 @@ ModelImporter:
     400018: //RootNode
     400020: SurfPatch
     400022: Torus
+    400024: Sphere.003
+    400026: Sphere.010
     2100000: Material.001
     2100002: Material
+    2100004: Spieler
     2300000: Sphere
     2300002: Sphere.001
     2300004: Sphere.002
@@ -40,6 +45,8 @@ ModelImporter:
     2300016: Sphere.009
     2300018: SurfPatch
     2300020: Torus
+    2300022: Sphere.003
+    2300024: Sphere.010
     3300000: Sphere
     3300002: Sphere.001
     3300004: Sphere.002
@@ -51,6 +58,8 @@ ModelImporter:
     3300016: Sphere.009
     3300018: SurfPatch
     3300020: Torus
+    3300022: Sphere.003
+    3300024: Sphere.010
     4300000: Sphere.001
     4300002: Sphere.002
     4300004: Sphere.004
@@ -62,7 +71,14 @@ ModelImporter:
     4300016: SurfPatch
     4300018: Sphere
     4300020: Sphere.009
-  externalObjects: {}
+    4300022: Sphere.003
+    4300024: Sphere.010
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Spieler
+    second: {fileID: 2100000, guid: cc32d088d489398458e7ab7ecd6e5593, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
