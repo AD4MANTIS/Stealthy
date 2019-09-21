@@ -145,3 +145,4 @@ MonoBehaviour:
   playerSeesEnemy: {fileID: 8300000, guid: 2ddbc1e19e08f42cc86b934ec63c1553, type: 3}
   enemySeesPlayer: {fileID: 0}
   hideInBoxChill: {fileID: 8300000, guid: a77715a21e1a84b65aa64936878e9ec1, type: 3}
+  hideInBoxIntense: {fileID: 8300000, guid: fb8eea1e35d144e119170d3fbdb77bfc, type: 3}
