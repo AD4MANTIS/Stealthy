@@ -3,12 +3,15 @@ using nvp.events;
 
 public class Enemy : MonoBehaviour
 {
+    public Vector3[] route;
+
     private void OnTriggerEnter(Collider other)
     {
-        NvpEventController.Events("OnHitByPlayer").TriggerEvent(this, null);
+        NvpEventController.Events(MyEvent.OnHitByPlayer).TriggerEvent(this, null);
     }
 
-    public void PointerEntered()
+    private void Update()
     {
+        
     }
 }

@@ -140,5 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fd1e5c6bd300740a86723848261fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chill: {fileID: 8300000, guid: 759ed526643974f1ca354c5aa934bcae, type: 3}
-  death: {fileID: 0}
+  chill: {fileID: 0}
+  death: {fileID: 8300000, guid: 759ed526643974f1ca354c5aa934bcae, type: 3}
+  PlayerSeesEnemy: {fileID: 8300000, guid: 2ddbc1e19e08f42cc86b934ec63c1553, type: 3}
+  EnemySeesPlayer: {fileID: 0}

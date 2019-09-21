@@ -3,16 +3,25 @@ using System.Collections.Generic;
 
 namespace nvp.events
 {
+    public enum MyEvent
+    {
+        Null = 0,
+        PlayerSeesEnemy,
+        EnemySeesPlayer,
+        PlayerDies,
+        OnHitByPlayer
+    }
+
     public class NvpEventController
     {
-        private static readonly Dictionary<string, GameEventWrapper> EventHandlers;
+        private static readonly Dictionary<MyEvent, GameEventWrapper> EventHandlers;
 
         static NvpEventController()
         {
-            EventHandlers = new Dictionary<string, GameEventWrapper>();
+            EventHandlers = new Dictionary<MyEvent, GameEventWrapper>();
         }
 
-        public static GameEventWrapper Events(string eventName)
+        public static GameEventWrapper Events(MyEvent eventName)
         {
             if (!EventHandlers.ContainsKey(eventName))
                 EventHandlers[eventName] = new GameEventWrapper();
