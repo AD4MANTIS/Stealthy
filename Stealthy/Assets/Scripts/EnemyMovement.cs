@@ -58,15 +58,15 @@ public class EnemyMovement : MonoBehaviour
         {
             if (state == EnemyState.LostPlayer)
             {
-                StartCoroutine(Rotate(rotateDuration));
                 state = EnemyState.Rotating;
+                StartCoroutine(Rotate(rotateDuration));
             }
             else
             {
-                if (Vector3.Distance(transform.position, currentPoint) < 0.5f)
-                    SetNextPoint();
-
                 MoveTo(currentPoint);
+
+                if (Vector3.Distance(transform.position, currentPoint) < 0.6f)
+                    SetNextPoint();
             }
         }
     }

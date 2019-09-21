@@ -143,6 +143,6 @@ MonoBehaviour:
   chill: {fileID: 8300000, guid: 5711825e06f4d4fa5a22f2c8e038b4b5, type: 3}
   death: {fileID: 8300000, guid: 759ed526643974f1ca354c5aa934bcae, type: 3}
   playerSeesEnemy: {fileID: 8300000, guid: 2ddbc1e19e08f42cc86b934ec63c1553, type: 3}
-  enemySeesPlayer: {fileID: 0}
+  enemySeesPlayer: {fileID: 8300000, guid: 1e697f3a40989450092693cc6695d4ac, type: 3}
   hideInBoxChill: {fileID: 8300000, guid: a77715a21e1a84b65aa64936878e9ec1, type: 3}
   hideInBoxIntense: {fileID: 8300000, guid: fb8eea1e35d144e119170d3fbdb77bfc, type: 3}
