@@ -16,7 +16,14 @@ public class Player : MonoBehaviour
 
     private void Player_GotHit(object sender, System.EventArgs e)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (e is EnemyHitEventArgs enemyHitArgs && enemyHitArgs.enemyKilled)
+        {
+            enemyHitArgs.enemy.Kill();
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     void Update()
