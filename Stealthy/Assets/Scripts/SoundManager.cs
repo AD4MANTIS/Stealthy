@@ -9,15 +9,17 @@ public class SoundManager : MonoBehaviour
     private AudioSource soundManager;
     public AudioClip chill;
     public AudioClip death;
+    public AudioClip PlayerSeesEnemy;
+    public AudioClip EnemySeesPlayer;
 
     private void OnEnable()
     {
         soundManager = GetComponent<AudioSource>();
 
         PlayOtherMusik(chill);
-        NvpEventController.Events("PlayerSeesEnemy").GameEventHandler += SoundManager_PlayerSeesEnemy;
-        NvpEventController.Events("EnemySeesPlayer").GameEventHandler += SoundManager_EnemySeesPlayer;
-        NvpEventController.Events("PlayerDies").GameEventHandler += SoundManager_PlayerDies;
+        NvpEventController.Events(MyEvent.PlayerSeesEnemy).GameEventHandler += SoundManager_PlayerSeesEnemy;
+        NvpEventController.Events(MyEvent.EnemySeesPlayer).GameEventHandler += SoundManager_EnemySeesPlayer;
+        NvpEventController.Events(MyEvent.PlayerDies).GameEventHandler += SoundManager_PlayerDies;
     }
 
     private void SoundManager_PlayerDies(object sender, EventArgs e)
@@ -27,20 +29,17 @@ public class SoundManager : MonoBehaviour
 
     private void OnDisable()
     {
-        NvpEventController.Events("PlayerSeesEnemy").GameEventHandler -= SoundManager_PlayerSeesEnemy;
-        NvpEventController.Events("EnemySeesPlayer").GameEventHandler -= SoundManager_EnemySeesPlayer;
-        NvpEventController.Events("PlayerDies").GameEventHandler -= SoundManager_PlayerDies;
+        NvpEventController.Events(MyEvent.PlayerSeesEnemy).GameEventHandler -= SoundManager_PlayerSeesEnemy;
+        NvpEventController.Events(MyEvent.EnemySeesPlayer).GameEventHandler -= SoundManager_EnemySeesPlayer;
+        NvpEventController.Events(MyEvent.PlayerDies).GameEventHandler -= SoundManager_PlayerDies;
     }
 
-    private void SoundManager_EnemySeesPlayer(object sender, System.EventArgs e)
-    {
-        soundManager.Stop();
-    }
+    private void SoundManager_EnemySeesPlayer(object sender, EventArgs e) => soundManager.Stop();
 
-
-    private void SoundManager_PlayerSeesEnemy(object sender, System.EventArgs e)
+    private void SoundManager_PlayerSeesEnemy(object sender, EventArgs e)
     {
-        soundManager.Stop();
+        if(soundManager.clip != EnemySeesPlayer)
+            PlayOtherMusik(PlayerSeesEnemy);
     }
 
     private void PlayOtherMusik(AudioClip clip, float? delay = null)

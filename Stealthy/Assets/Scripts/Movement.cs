@@ -1,26 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    void Start()
-    {
-    }
+    const float stepSize = 1f;
+    const float interactRange = 3f;
 
-    private void OnDestroy()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            transform.position += transform.forward;
+            TryMove(transform.forward);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.position -= transform.forward;
+            TryMove(-transform.forward);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
@@ -30,5 +24,36 @@ public class Movement : MonoBehaviour
         {
             transform.Rotate(Vector3.up, 90f);
         }
+        
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
+            Interact();
+    }
+
+    private void Interact()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, interactRange))
+        {
+
+        }
+    }
+
+    private void TryMove(Vector3 vector)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, vector, out hit, stepSize))
+        {
+            if (!hit.collider.gameObject.CompareTag("Environment"))
+                Move(vector);
+        }
+        else
+        {
+            Move(vector);
+        }
+    }
+
+    private void Move(Vector3 vector)
+    {
+        transform.position += vector;
     }
 }

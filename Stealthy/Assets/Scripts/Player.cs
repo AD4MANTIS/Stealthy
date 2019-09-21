@@ -5,12 +5,12 @@ public class Player : MonoBehaviour
 {
     private void OnEnable()
     {
-        NvpEventController.Events("OnHitByPlayer").GameEventHandler += Player_GameEventHandler;
+        NvpEventController.Events(MyEvent.OnHitByPlayer).GameEventHandler += Player_GameEventHandler;
     }
 
     private void OnDisable()
     {
-        NvpEventController.Events("OnHitByPlayer").GameEventHandler -= Player_GameEventHandler;
+        NvpEventController.Events(MyEvent.OnHitByPlayer).GameEventHandler -= Player_GameEventHandler;
     }
 
     private void Player_GameEventHandler(object sender, System.EventArgs e)
@@ -26,11 +26,11 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.collider.gameObject.GetComponent<Enemy>() != null)
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            NvpEventController.Events("PlayerSeesEnemy").TriggerEvent(this, null);
+            if (hit.collider.gameObject.GetComponent<Enemy>() != null)
+                NvpEventController.Events(MyEvent.PlayerSeesEnemy).TriggerEvent(this, null);
         }
-
     }
 
     private void Hit(object param1, object param2)
