@@ -9,7 +9,9 @@ namespace nvp.events
         PlayerSeesEnemy,
         EnemySeesPlayer,
         PlayerDies,
-        OnHitByPlayer
+        OnHitByPlayer,
+        LevelFinish,
+        HideInBox
     }
 
     public class NvpEventController

@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8bb9e6b3d455d4f4f83c4469ccffcb3f
+  - enabled: 1
+    path: Assets/Scenes/Toturial_level_proto.unity
+    guid: 9d4d7fe9ae7f4de44b298f0365059b24
   m_configObjects: {}

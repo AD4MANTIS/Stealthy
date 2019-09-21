@@ -1,28 +1,28 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     const float stepSize = 1f;
     const float interactRange = 3f;
+    public float speed;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            TryMove(transform.forward);
+            TryMove(Time.deltaTime * Vector3.left);
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
-            TryMove(-transform.forward);
+            TryMove(Time.deltaTime * Vector3.right);
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.up, -90f);
+            TryMove(Time.deltaTime * Vector3.back);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(Vector3.up, 90f);
+            TryMove(Time.deltaTime * Vector3.forward);
         }
         
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
 
     private void TryMove(Vector3 vector)
     {
+        transform.rotation = Quaternion.LookRotation(vector);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, vector, out hit, stepSize))
         {
@@ -54,6 +55,6 @@ public class Movement : MonoBehaviour
 
     private void Move(Vector3 vector)
     {
-        transform.position += vector;
+        transform.position += speed * vector;
     }
 }

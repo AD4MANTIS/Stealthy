@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using nvp.events;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     private void OnEnable()
     {
-        NvpEventController.Events(MyEvent.OnHitByPlayer).GameEventHandler += Player_GameEventHandler;
+        NvpEventController.Events(MyEvent.OnHitByPlayer).GameEventHandler += Player_GotHit;
     }
 
     private void OnDisable()
     {
-        NvpEventController.Events(MyEvent.OnHitByPlayer).GameEventHandler -= Player_GameEventHandler;
+        NvpEventController.Events(MyEvent.OnHitByPlayer).GameEventHandler -= Player_GotHit;
     }
 
-    private void Player_GameEventHandler(object sender, System.EventArgs e)
+    private void Player_GotHit(object sender, System.EventArgs e)
     {
-        Debug.Log("OnHitByPlayer");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Update()
