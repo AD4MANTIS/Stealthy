@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
@@ -26,12 +24,10 @@ public class Movement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.position -= transform.right;
             transform.Rotate(Vector3.up, -90f);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.position += transform.right;
             transform.Rotate(Vector3.up, 90f);
         }
     }
