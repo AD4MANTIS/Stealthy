@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 6630283588623746280}
   - component: {fileID: 6630283588623746295}
   - component: {fileID: 6630283588623746294}
-  - component: {fileID: 2128136705271137279}
+  - component: {fileID: 9277702021483358}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -171,7 +171,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5711825e06f4d4fa5a22f2c8e038b4b5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 760f69b8f4c3b435e92261b21c6143cf, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -270,14 +270,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicManager: {fileID: 6630283588623746295}
-  soundManager: {fileID: 2128136705271137279}
-  chill: {fileID: 8300000, guid: 5711825e06f4d4fa5a22f2c8e038b4b5, type: 3}
+  soundManager: {fileID: 9277702021483358}
+  chill: {fileID: 8300000, guid: 760f69b8f4c3b435e92261b21c6143cf, type: 3}
   death: {fileID: 8300000, guid: 759ed526643974f1ca354c5aa934bcae, type: 3}
   playerSeesEnemy: {fileID: 8300000, guid: 2ddbc1e19e08f42cc86b934ec63c1553, type: 3}
   enemySeesPlayer: {fileID: 8300000, guid: 1e697f3a40989450092693cc6695d4ac, type: 3}
   hideInBoxChill: {fileID: 8300000, guid: a77715a21e1a84b65aa64936878e9ec1, type: 3}
   hideInBoxIntense: {fileID: 8300000, guid: fb8eea1e35d144e119170d3fbdb77bfc, type: 3}
---- !u!82 &2128136705271137279
+--- !u!82 &9277702021483358
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

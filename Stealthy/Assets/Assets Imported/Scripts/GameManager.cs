@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        NvpEventController.Events(MyEvent.PlayerDies).GameEventHandler += GameOver;
+        NvpEventController.Events(MyEvent.LevelFinish).GameEventHandler += WinLevel;
+    }
+
     private void WinLevel(object sender, EventArgs e) => WinLevel();
 
     private void GameOver(object sender, EventArgs e)
@@ -76,6 +82,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadNextLevel() => LoadLevel(scene + 1);
+
     [HideInInspector]
     public Scenes scene = Scenes.Null;
 
@@ -91,8 +99,10 @@ public class GameManager : MonoBehaviour
 
     private void ResetUI()
     {
-        gameOverUI.SetActive(false);
-        completeLevelUI.SetActive(false);
+        if (gameOverUI)
+            gameOverUI.SetActive(false);
+        if (completeLevelUI)
+            completeLevelUI.SetActive(false);
     }
 
     public void EndGame()
@@ -100,14 +110,18 @@ public class GameManager : MonoBehaviour
         if (gameIsOver)
             return;
 
-        gameIsOver = true;
-        gameOverUI.SetActive(true);
+        if (gameOverUI)
+            gameIsOver = true;
+        if (completeLevelUI)
+            gameOverUI.SetActive(true);
     }
 
     public void WinLevel()
     {
-        gameIsOver = true;
-        completeLevelUI.SetActive(true);
+        if (gameOverUI)
+            gameIsOver = true;
+        if (completeLevelUI)
+            completeLevelUI.SetActive(true);
     }
 
     public void ReloadeLevel()

@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3861309182149901048}
   - component: {fileID: 3861309182149901053}
-  - component: {fileID: 3861309182149901051}
   - component: {fileID: 3861309182149901052}
-  - component: {fileID: 3861309182149901055}
+  - component: {fileID: 7478792836821654456}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,29 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2470a84a4a68be3478ba6039e4400b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemies: {fileID: 0}
   scene: -1
   gameIsOver: 0
   gameOverUI: {fileID: 0}
   completeLevelUI: {fileID: 0}
-  currencySymbol: $
---- !u!114 &3861309182149901051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3861309182149901046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49c46a0fdc9fc2943a7df104e6686e1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyText: {fileID: 0}
-  buildEffect: {fileID: 6167945617507482188, guid: 5e719a1e7e39fd040845dc070f427109,
-    type: 3}
-  sellEffect: {fileID: 6167945617507482188, guid: ab9e22988636015448efc9ad06222578,
-    type: 3}
-  nodeUI: {fileID: 0}
 --- !u!114 &3861309182149901052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 0}
   sceneFader: {fileID: 0}
---- !u!114 &3861309182149901055
+--- !u!114 &7478792836821654456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,8 +73,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3861309182149901046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c1fa3bc6096c04b8f19600646362b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5096400054ea6d6408d213c224cbb66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livesText: {fileID: 0}
-  waveCountdownText: {fileID: 0}
+  sceneFader: {fileID: 0}

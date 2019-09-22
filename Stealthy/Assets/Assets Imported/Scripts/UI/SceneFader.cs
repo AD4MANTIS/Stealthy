@@ -28,18 +28,13 @@ public class SceneFader : MonoBehaviour
     public void FadeToScene(int buidIndex)
     {
         StartCoroutine(FadeOut());
-        StartCoroutine(LoadLevel(buidIndex));
+        GameManager.Instance.LoadLevel(buidIndex);
+        StartCoroutine(FadeIn());
     }
 
     public void FadeToLevel(GameManager.Scenes level)
     {
         StartCoroutine(FadeOut());
-        StartCoroutine(LoadLevel((int)level));
-    }
-
-    private IEnumerator LoadLevel(int level)
-    {
-        yield return new WaitForSecondsRealtime(7f);
         GameManager.Instance.LoadLevel(level);
         StartCoroutine(FadeIn());
     }

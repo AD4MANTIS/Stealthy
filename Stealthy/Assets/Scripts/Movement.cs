@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
     private void Interact()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 3f))
+        if (Physics.Raycast(transform.position + transform.up, transform.forward, out hit, 4f))
         {
             Kiste kiste = hit.collider.gameObject.GetComponent<Kiste>();
             if (kiste != null)
@@ -99,7 +99,7 @@ public class Movement : MonoBehaviour
 
         NvpEventController.Events(MyEvent.LeaveBox).TriggerEvent(this, null);
         currentKiste.Interact(gameObject, new BoxInteractEventArgs(transform.position.y * transform.localScale.y, false));
-        transform.localScale /= 0.5f;
+        transform.localScale /= boxSmall;
         currentKiste = null;
     }
 

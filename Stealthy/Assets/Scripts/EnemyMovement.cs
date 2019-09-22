@@ -118,7 +118,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void CheckPlayerPosition()
     {
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = player.transform.position + Vector3.up * 3 - transform.position;
         float angle = Vector3.Angle(direction, transform.forward);
 
         if (angle < fieldOfViewAngle * 0.5f)
@@ -129,7 +129,7 @@ public class EnemyMovement : MonoBehaviour
                 if (hit.collider.gameObject == player)
                 {
                     state = EnemyState.SeesPlayer;
-                    personalLastSighting = player.transform.position;
+                    personalLastSighting = player.transform.position + Vector3.up * 3;
                     NvpEventController.Events(MyEvent.EnemySeesPlayer).TriggerEvent(this, null);
                 }
             }

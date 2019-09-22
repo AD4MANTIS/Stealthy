@@ -46,7 +46,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 5, z: 2.5}
+  m_Size: {x: 2.5, y: 5, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6535394506943683067
 MonoBehaviour:
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037b7982083a7894a83b9510011c392e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
+  movement: {fileID: 8360920865734162659}
 --- !u!114 &8360920865734162659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7751daddf982404fb325bb898089939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfViewAngle: 120
+  fieldOfViewAngle: 100
   rotateDuration: 1
   personalLastSighting: {x: 0, y: 0, z: 0}
   state: 1
@@ -88,7 +88,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5506783050944183792}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50

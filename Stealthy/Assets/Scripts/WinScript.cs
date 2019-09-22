@@ -1,4 +1,5 @@
 ﻿using nvp.events;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,10 +11,12 @@ public class WinScript : MonoBehaviour
         if (player != null)
         {
             NvpEventController.Events(MyEvent.LevelFinish).TriggerEvent(player, null);
-
-            CompleteLevel completeLevel = GetComponent<CompleteLevel>();
-            completeLevel.enabled = true;
-            completeLevel.Continue();
+            StartCoroutine(Win());
         }
+    }
+    private IEnumerator Win()
+    {
+        yield return new WaitForSeconds(7f);
+        GameManager.Instance.LoadNextLevel();
     }
 }
