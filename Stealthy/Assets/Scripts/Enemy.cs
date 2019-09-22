@@ -8,11 +8,6 @@ public class Enemy : MonoBehaviour
 
     const float interactRange = 3f;
 
-    private void Awake()
-    {
-        movement = GetComponent<EnemyMovement>();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         Player player = other.gameObject.GetComponent<Player>();

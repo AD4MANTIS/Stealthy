@@ -1,5 +1,7 @@
 ﻿using nvp.events;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -11,7 +13,8 @@ public class SoundManager : MonoBehaviour
         EnemySawPlayer,
     }
 
-    private AudioSource soundManager;
+    public AudioSource musicManager;
+    public AudioSource soundManager;
 
     public AudioClip chill;
     public AudioClip death;
@@ -20,21 +23,20 @@ public class SoundManager : MonoBehaviour
     public AudioClip hideInBoxChill;
     public AudioClip hideInBoxIntense;
 
-    private AudioClip Clip => soundManager.clip;
+    private AudioClip Clip => musicManager.clip;
 
     private SoundState currentState = SoundState.Chill;
 
-    private int playerSawnCount = 0;
+    private List<Enemy> playerSaw = new List<Enemy>();
 
     private void OnEnable()
     {
-        soundManager = GetComponent<AudioSource>();
-        PlayOtherMusik(chill);
         NvpEventController.Events(MyEvent.PlayerSeesEnemy).GameEventHandler += SoundManager_PlayerSeesEnemy;
         NvpEventController.Events(MyEvent.EnemySeesPlayer).GameEventHandler += SoundManager_EnemySeesPlayer;
         NvpEventController.Events(MyEvent.PlayerDies).GameEventHandler += SoundManager_PlayerDies;
         NvpEventController.Events(MyEvent.HideInBox).GameEventHandler += Play_HideInBox;
-        NvpEventController.Events(MyEvent.LeaveBox).GameEventHandler += Play_LeaveBox; ;
+        NvpEventController.Events(MyEvent.LeaveBox).GameEventHandler += Play_LeaveBox;
+        NvpEventController.Events(MyEvent.EnemyLostPlayer).GameEventHandler += Play_LostPlayer;
     }
 
     private void OnDisable()
@@ -44,15 +46,30 @@ public class SoundManager : MonoBehaviour
         NvpEventController.Events(MyEvent.PlayerDies).GameEventHandler -= SoundManager_PlayerDies;
         NvpEventController.Events(MyEvent.HideInBox).GameEventHandler -= Play_HideInBox;
         NvpEventController.Events(MyEvent.LeaveBox).GameEventHandler -= Play_LeaveBox; ;
+        NvpEventController.Events(MyEvent.EnemyLostPlayer).GameEventHandler -= Play_LostPlayer;
     }
 
-    private void Play_LeaveBox(object sender, EventArgs e)
+    private void Play_LostPlayer(object sender, EventArgs e)
+    {
+        int index = playerSaw.IndexOf(sender as Enemy);
+        if (index >= 0)
+            playerSaw.RemoveAt(index);
+
+        if (playerSaw.Count == 0)
+        {
+            currentState = SoundState.PlayerSawEnemy;
+            PlayDefault();
+        }
+    }
+
+    private void Play_LeaveBox(object sender, EventArgs e) => PlayDefault();
+
+    private void PlayDefault()
     {
         if (currentState == SoundState.EnemySawPlayer)
             PlayOtherMusik(enemySeesPlayer);
         else
             PlayOtherMusik(chill);
-
     }
 
     private void Play_HideInBox(object sender, EventArgs e)
@@ -70,9 +87,14 @@ public class SoundManager : MonoBehaviour
 
     private void SoundManager_EnemySeesPlayer(object sender, EventArgs e)
     {
-        playerSawnCount++;
-        ChangeState(SoundState.EnemySawPlayer);
-        PlayOtherMusik(enemySeesPlayer);
+        var enemy = sender as Enemy;
+        if (!playerSaw.Contains(enemy))
+        {
+            playerSaw.Add(enemy);
+
+            ChangeState(SoundState.EnemySawPlayer);
+            PlayOtherMusik(enemySeesPlayer); ;
+        }
     }
 
     private void ChangeState(SoundState newState)
@@ -86,8 +108,8 @@ public class SoundManager : MonoBehaviour
     private void SoundManager_PlayerSeesEnemy(object sender, EventArgs e)
     {
         ChangeState(SoundState.PlayerSawEnemy);
-        if(currentState <= SoundState.PlayerSawEnemy)
-            PlayOtherMusik(playerSeesEnemy);
+        if (currentState <= SoundState.PlayerSawEnemy)
+            soundManager.Play();
     }
 
     private void PlayOtherMusik(AudioClip clip, float? delay = null)
@@ -95,11 +117,13 @@ public class SoundManager : MonoBehaviour
         if (clip is null)
             return;
 
-        soundManager.Stop();
-        soundManager.clip = clip;
+        Debug.Log(clip.ToString());
+
+        musicManager.Stop();
+        musicManager.clip = clip;
         if (delay == null)
-            soundManager.Play();
+            musicManager.Play();
         else
-            soundManager.PlayDelayed((float)delay);
+            musicManager.PlayDelayed((float)delay);
     }
 }

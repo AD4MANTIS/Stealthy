@@ -53,6 +53,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+
+
         CheckPlayerPosition();
         if (state != EnemyState.Rotating)
         {
@@ -86,6 +88,8 @@ public class EnemyMovement : MonoBehaviour
 
         if (state == EnemyState.Rotating)
             state = EnemyState.Patrol;
+
+        NvpEventController.Events(MyEvent.EnemyLostPlayer).TriggerEvent(this, null);
     }
 
     private void SetNextPoint()

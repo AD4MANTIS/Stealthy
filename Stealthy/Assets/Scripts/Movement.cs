@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private const float boxSmall = 0.3f;
     public float speed;
     public Camera gameCamera;
 
+    public BoxCollider boxCollider = null;
     private Kiste currentKiste = null;
     private Button currentButton = null;
 
@@ -80,20 +82,24 @@ public class Movement : MonoBehaviour
 
     private void GoInBox(Kiste kiste)
     {
+        boxCollider.enabled = false;
+
         NvpEventController.Events(MyEvent.HideInBox).TriggerEvent(this, null);
         currentKiste = kiste;
         kiste.Interact(gameObject, new BoxInteractEventArgs(transform.position.y * transform.localScale.y, true));
-
-        transform.localScale *= 0.7f;
+            
+        transform.localScale *= boxSmall;
 
         transform.position = kiste.gameObject.transform.position;
     }
 
     private void LeaveBox()
     {
+        boxCollider.enabled = true;
+
         NvpEventController.Events(MyEvent.LeaveBox).TriggerEvent(this, null);
         currentKiste.Interact(gameObject, new BoxInteractEventArgs(transform.position.y * transform.localScale.y, false));
-        transform.localScale /= 0.7f;
+        transform.localScale /= 0.5f;
         currentKiste = null;
     }
 
