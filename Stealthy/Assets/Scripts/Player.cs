@@ -25,24 +25,22 @@ public class Player : MonoBehaviour
         else
         {
             NvpEventController.Events(MyEvent.PlayerDies).TriggerEvent(sender, e);
-            StartCoroutine(EndGame());
         }
     }
 
-    private IEnumerator EndGame()
-    {
-        GetComponent<Movement>().enabled = false;
-        yield return new WaitForSecondsRealtime(7f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    bool sawEnemy = false;
 
-    private void FixedUpdate()
+    private void Update()
     {
+        if (sawEnemy)
+            return;
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
             if (hit.collider.gameObject.GetComponent<Enemy>() != null)
                 NvpEventController.Events(MyEvent.PlayerSeesEnemy).TriggerEvent(this, null);
         }
+        sawEnemy = true;
     }
 }

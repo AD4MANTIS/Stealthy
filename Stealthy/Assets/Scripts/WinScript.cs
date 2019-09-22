@@ -11,7 +11,9 @@ public class WinScript : MonoBehaviour
         {
             NvpEventController.Events(MyEvent.LevelFinish).TriggerEvent(player, null);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            CompleteLevel completeLevel = GetComponent<CompleteLevel>();
+            completeLevel.enabled = true;
+            completeLevel.Continue();
         }
     }
 }
