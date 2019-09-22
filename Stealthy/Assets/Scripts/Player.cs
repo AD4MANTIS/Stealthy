@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using nvp.events;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -22,13 +24,16 @@ public class Player : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            NvpEventController.Events(MyEvent.PlayerDies).TriggerEvent(sender, e);
+            StartCoroutine(EndGame());
         }
     }
 
-    void Update()
+    private IEnumerator EndGame()
     {
-        
+        GetComponent<Movement>().enabled = false;
+        yield return new WaitForSecondsRealtime(7f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void FixedUpdate()
@@ -39,10 +44,5 @@ public class Player : MonoBehaviour
             if (hit.collider.gameObject.GetComponent<Enemy>() != null)
                 NvpEventController.Events(MyEvent.PlayerSeesEnemy).TriggerEvent(this, null);
         }
-    }
-
-    private void Hit(object param1, object param2)
-    {
-        Debug.Log("Hit");
     }
 }

@@ -11,7 +11,9 @@ namespace nvp.events
         PlayerDies,
         OnHitByPlayer,
         LevelFinish,
-        HideInBox
+        HideInBox,
+        LeaveBox,
+        EnemyLostPlayer,
     }
 
     public class NvpEventController

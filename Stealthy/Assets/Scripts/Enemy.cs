@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public EnemyMovement movement;
 
+    const float interactRange = 3f;
+
     private void Awake()
     {
         movement = GetComponent<EnemyMovement>();
